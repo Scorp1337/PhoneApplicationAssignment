@@ -18,6 +18,8 @@ public abstract class Phone implements Device {
 
     protected int batteryLifePerCall = 2;
 
+    protected int myBatteryLifeRemaining;
+
 
     protected List<Contact> contacts = new ArrayList<>();
     protected List<Message> messages = new ArrayList<>();
@@ -68,22 +70,32 @@ public abstract class Phone implements Device {
         }
         batteryLifePerMessage();
         System.out.println("Battery remaining  " + batteryLifeRemaining + " hours.");
-        this.currentBatteryLife = batteryLifeRemaining;
+}
 
-
+    @Override
+    public void call(String phoneNumber) {
+        int batteryDecrease = 0;
+        System.out.println("Numbered called " + contacts.get(1));
+        batteryLifePerCall();
+        batteryDecrease = myBatteryLifeRemaining-batteryLifePerCall;
+        System.out.println("Battery remaining: " +  batteryDecrease + " hours.");
     }
+
 
     public void batteryLifePerMessage() {
 
-        if (this.currentBatteryLife < batteryLife)
+        if (this.currentBatteryLife < batteryLife) {
             batteryLifeRemaining = batteryLife - batteryLifePerMessage;
 
+        }
+        myBatteryLifeRemaining = batteryLifeRemaining;
     }
 
     public void batteryLifePerCall() {
 
         if (this.currentBatteryLife < batteryLife)
-            batteryLifeRemaining = batteryLife - batteryLifePerCall;
+            batteryLifeRemaining -=   batteryLifePerCall;
+
 
     }
 
@@ -122,13 +134,7 @@ public abstract class Phone implements Device {
 
     }
 
-    @Override
-    public void call(String phoneNumber) {
 
-        System.out.println("Numbered called " + contacts.get(1));
-        batteryLifePerCall();
-        System.out.println("Battery's life decreased by: " + batteryLifeRemaining + " hours.");
-    }
 
     public void getFirstContact() {
         System.out.println("First contact is: " + contacts.get(0).lastName + " " + contacts.get(0).firstName);
