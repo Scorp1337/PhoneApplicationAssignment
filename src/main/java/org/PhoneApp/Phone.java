@@ -12,15 +12,17 @@ public abstract class Phone implements Device {
 
     protected int currentBatteryLife;
 
-    protected int remainingBattery;
+    protected int batteryLifeRemaining;
 
-    protected String messageLength;
+    protected int batteryLifePerMessage = 1;
+
+    protected int batteryLifePerCall = 2;
 
 
-    protected int sentMessage;
     protected List<Contact> contacts = new ArrayList<>();
     protected List<Message> messages = new ArrayList<>();
 
+    protected List<Call> calls = new ArrayList<>();
 
     public Phone(int batteryLife, String color, String material, String IMEI) {
         this.batteryLife = batteryLife;
@@ -57,38 +59,66 @@ public abstract class Phone implements Device {
 
         System.out.println("This message was sent to " + phoneNumber + messages.get(0));
         System.out.println("This message was sent to " + phoneNumber + messages.get(1));
+
         System.out.println();
 
-        if (phoneNumber.equalsIgnoreCase("0744555666")) {
-            System.out.println("Messages stored for first contact are: \n" + messages.get(0) + "\n" + messages.get(1));
+        if (phoneNumber.equalsIgnoreCase(phoneNumber)) {
+            System.out.println("Messages stored for number :" + phoneNumber + " \n" + messages.get(0) +
+                    "\n" + messages.get(1));
         }
+        batteryLifePerMessage();
+        System.out.println("Battery remaining  " + batteryLifeRemaining + " hours.");
+        this.currentBatteryLife = batteryLifeRemaining;
+
+
     }
 
+    public void batteryLifePerMessage() {
+
+        if (this.currentBatteryLife < batteryLife)
+            batteryLifeRemaining = batteryLife - batteryLifePerMessage;
+
+    }
+
+    public void batteryLifePerCall() {
+
+        if (this.currentBatteryLife < batteryLife)
+            batteryLifeRemaining = batteryLife - batteryLifePerCall;
+
+    }
+
+    @Override
+    public void addCall(Call call) {
+        if (calls.size() > 5) {
+            System.out.println("Call list is full!");
+            return;
+        }
+        calls.add(call);
+    }
+
+    @Override
     public void addMessage(Message message) {
         if (messages.size() > 2) {
             System.out.println("Message list is full!");
             return;
-
-
         }
         messages.add(message);
     }
 
-    /**
-     * need some hints here
-     */
+
     @Override
-    public void viewHistory() {
+    public void viewHistory(String phoneNumber) {
 
-
+        if (phoneNumber.equalsIgnoreCase(phoneNumber)) {
+            System.out.println("Call for: " + phoneNumber + "\n " + "Call 1" + calls.get(0) + "\n Call 2" + calls.get(1));
+        }
     }
 
-    /**
-     * need some hints here
-     */
     @Override
     public void listAMessageByContactNumber(String phoneNumber) {
-
+        if (phoneNumber.equalsIgnoreCase(phoneNumber)) {
+            System.out.println("Listing a message by contact number: " + phoneNumber + " Message: " + messages.get(0));
+        }
 
     }
 
@@ -96,24 +126,28 @@ public abstract class Phone implements Device {
     public void call(String phoneNumber) {
 
         System.out.println("Numbered called " + contacts.get(1));
+        batteryLifePerCall();
+        System.out.println("Battery's life decreased by: " + batteryLifeRemaining + " hours.");
     }
 
     public void getFirstContact() {
         System.out.println("First contact is: " + contacts.get(0).lastName + " " + contacts.get(0).firstName);
     }
+
     public void getLastContact() {
-        System.out.println("Last contact is: " + contacts.get(contacts.size() - 1).lastName + " " + contacts.get(contacts.size() - 1).firstName);
+        System.out.println("Last contact is: " + contacts.get(contacts.size() - 1).lastName + " "
+                + contacts.get(contacts.size() - 1).firstName);
     }
 
     public void getFirstMessage(String phoneNumber) {
-        if (phoneNumber.equalsIgnoreCase("0744555666")) {
+        if (phoneNumber.equalsIgnoreCase(phoneNumber)) {
             System.out.println("First message is: " + messages.get(0));
         }
 
     }
 
     public void getSecondMessage(String phoneNumber) {
-        if (phoneNumber.equalsIgnoreCase("0744555666")) {
+        if (phoneNumber.equalsIgnoreCase(phoneNumber)) {
             System.out.println("Second message is: " + messages.get(1));
         }
     }

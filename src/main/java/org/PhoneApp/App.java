@@ -2,8 +2,8 @@ package org.PhoneApp;
 
 /**
  * Phones is a Device. So our interface will be Device
- * Interface behaviour : createContact, listContacts, sendMessage, listMessageForSpecificContact, makeACall,
- * listCallHistory
+ * Interface behaviour : createContact, listContacts, sendMessage, addMessage, listMessageForSpecificContact, call,
+ * addCall, listCallHistory
  * Properties that can't be changed : batteryLife in hours.
  * Properties that can be changed : color, material
  * Instance specific properties : IMEI (serial number for phone)
@@ -35,10 +35,17 @@ public class App extends Object {
                 "prize of 1.000.000 dollars. Enjoy it!");
 
 
+        Call call1 = new Call("Call missed.");
+        Call call2 = new Call("You've received a new call. If you wanna hear it press 1");
+
+
         phone.addContact(contact1);
         phone.addContact(contact2);
         phone.addMessage(message1);
         phone.addMessage(message2);
+
+        phone.addCall(call1);
+        phone.addCall(call2);
 
         phone.listExistingContacts();
 
@@ -54,15 +61,17 @@ public class App extends Object {
         phone.getSecondMessage("0744555666");
 
         System.out.println("======================================================================================");
+        phone.listAMessageByContactNumber("0745999111");
+        System.out.println("======================================================================================");
         phone.call("0745999111");
+        System.out.println("======================================================================================");
+        phone.viewHistory("0745999111");
 
 
 
-// make a call to the second contact from the previously listed
-//
-//        phone.call("second phone number");
-//
-//        phone.viewHistory();
+
+
+
 
     }
 

@@ -12,7 +12,8 @@ public class Message {
 
         if( this.content.length() > 500){
             this.content = "Message is too long!";
-
+        }else if (this.content.length() < 500){
+            this.content = this.content.substring(0,content.length());
         }
 
     }

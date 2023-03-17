@@ -13,7 +13,11 @@ public interface Device {
 
     void call(String phoneNumber);
 
-    void viewHistory();
+    void viewHistory(String phoneNumber);
+
+    void addCall(Call call);
+
+    void addMessage(Message message);
 
 
 }
