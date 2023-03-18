@@ -62,14 +62,15 @@ public abstract class Phone implements Device {
         System.out.println("This message was sent to " + phoneNumber + messages.get(0));
         System.out.println("This message was sent to " + phoneNumber + messages.get(1));
 
-        System.out.println();
+
 
         if (phoneNumber.equalsIgnoreCase(phoneNumber)) {
             System.out.println("Messages stored for number :" + phoneNumber + " \n" + messages.get(0) +
                     "\n" + messages.get(1));
         }
         batteryLifePerMessage();
-        System.out.println("Battery remaining  " + batteryLifeRemaining + " hours.");
+        System.out.println("Battery remaining: " + myBatteryLifeRemaining);
+
 }
 
     @Override
@@ -93,9 +94,9 @@ public abstract class Phone implements Device {
 
     public void batteryLifePerCall() {
 
-        if (this.currentBatteryLife < batteryLife)
-            batteryLifeRemaining -=   batteryLifePerCall;
-
+        if (this.currentBatteryLife < batteryLife) {
+            batteryLifeRemaining -= batteryLifePerCall;
+        }
 
     }
 

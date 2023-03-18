@@ -56,6 +56,7 @@ public class App extends Object {
         System.out.println("======================================================================================");
         phone.sendMessage("0744555666");
 
+
         System.out.println("======================================================================================");
         phone.getFirstMessage("0744555666");
         phone.getSecondMessage("0744555666");
@@ -64,6 +65,7 @@ public class App extends Object {
         phone.listAMessageByContactNumber("0745999111");
         System.out.println("======================================================================================");
         phone.call("0745999111");
+
         System.out.println("======================================================================================");
         phone.viewHistory("0745999111");
 
