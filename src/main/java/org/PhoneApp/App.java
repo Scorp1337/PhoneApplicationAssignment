@@ -9,7 +9,6 @@ package org.PhoneApp;
  * Instance specific properties : IMEI (serial number for phone)
  * Phone behavior:  message can have maximum 500 chars, sending message drains 1hour of batteryLife,
  * every call drains 2hours of batteryLife;
- *
  *Tasks
  * implement the classes, abstract classes and interfaces according to the given information
  * create at least 2 phone brands with 2 models for each
@@ -32,24 +31,9 @@ public class App {
         phone.addContact(contact1);
         phone.addContact(contact2);
 
-//        Message message1 = new Message("This is a message from the future so please don't lose your mind");
-//        Message message2 = new Message("I would like to extend our congratulations for winning our grand " +
-//                "prize of 1.000.000 dollars. Enjoy it!");
-
-
-//        Call call1 = new Call("Call missed.");
-//        Call call2 = new Call("You've received a new call. If you wanna hear it press 1");
-
 
         phone.addContact(contact1);
         phone.addContact(contact2);
-//        phone.saveMessage(message1);
-//        phone.saveMessage(message2);
-
-
-//        phone.saveCallHistory(call1);
-//        phone.saveCallHistory(call2);
-
 
         phone.listExistingContacts();
 
