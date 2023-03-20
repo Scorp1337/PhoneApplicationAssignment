@@ -15,9 +15,9 @@ public interface Device {
 
     void viewHistory(String phoneNumber);
 
-    void addCall(Call call);
+    void saveCallHistory(Call call);
 
-    void addMessage(Message message);
+    void messageList(Message message);
 
 
 }
